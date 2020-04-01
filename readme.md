@@ -1,1 +1,63 @@
 # Codable Guided Project
+
+- [ ]  One problem with grouping multiple types in an array and trying to work with them is you have to treat each type differently in certain cases. One of those cases is encoding/decoding (since we can't encode/decode Protocols)
+- [ ]  In the case of a model controller, it's often times better to create two model controllers and use them each to manage their own type
+- [ ]  Let's make a new group called Model Controllers
+- [ ]  Let's make a new file in our Model Controllers group
+    - [ ]  call it VehicleController
+    - [ ]  give it a class property vehicles: [Vehicle]
+    - [ ]  Let's get ready for persistence by creating our persistent URL
+        - [ ]  let persistentFilename = "Car.plist"
+        - [ ]  var persistentURL: URL?
+    - [ ]  lets stub out our CRUD methods (*just* stub them!)
+        - [ ]  🛑 Use Marks
+        - [ ]  func addCarToList(car: Car)
+        - [ ]  func loadList
+        - [ ]  func updateList
+        - [ ]  func deleteCarFromList(car: Car)
+        - [ ]  private func checkPersistence()
+            - [ ]  Implement
+        - [ ]  Implement loadList
+        - [ ]  🛑 Decodable (talk about how every type in the chain needs to conform to Decodable)
+        - [ ]  🛑 Go to Car struct, make it conform to Decodable
+            - [ ]  🛑 hit the error sign and see what properties aren't Decodable
+        - [ ]  Conform all types to Decodable in CarParts.swift
+            - [ ]  make engine and body conform to String
+            - [ ]  Talk about how there are other ways of conforming custom types that we'll learn about later
+            - [ ]  But we also need to clean up our engine and body if we're ever going to display that information to the user so we might as well just make the rawValue String. Giving it this rawValue associates the enum with the String type
+            - [ ]  🛑 Build, build succeeds
+        - [ ]  Implement saveToPersistentStore()
+            - [ ]  🛑 Encodable error (same as Decodable, but luckily there's a built-in protocol that encompasses both)
+            - [ ]  Conform all CarParts to Codable
+                - [ ]  🛑 Build, ask if anyone knows what happened (Car needs to be Codable)
+                - [ ]  Conform Car to Codable
+                - [ ]  🛑 Build, build succeeded
+        - [ ]  Implement addCarToList
+        - [ ]  Implement updateCar(car: Car)
+            - [ ]  Try to implement first: where by comparing the cars
+            - [ ]  Oops, we need a unique Identifier for our vehicle (first: where
+            - [ ]  Talk about UUID and implement it
+            - [ ]  varid: UUID = UUID()
+                - [ ]  This will give us a new unique ID anytime a Car is created
+        - [ ]  It's Equatable out of the box, but the default implementation is to equate every property. We want to be able to pass a changed Car into our update array and still be able to easily find it.
+        - [ ]  Implement static func == in Car
+        - [ ]  Finish implementing updateCar(car: Car)
+        - [ ]  Implement deleteCarFromList(car: Car)
+            - [ ]  🛑 talk about firstIndex(of: ... ) and how we get that now where before we had to implement a different function
+        - [ ]  Delete Vehicle array
+            - [ ]  refactor to use carController
+                - [ ]  Instantiate to empty CarController()
+                - [ ]  change number of rows
+                - [ ]  change cellForRowAt
+                - [ ]  change cell property to car
+
+- [ ]  Check the time if it's before 10:15 - let's spend another 15-20 minutes setting up our model controller for the Beaters (same as above)
+- [ ]  If it's not, let's talk about JSON
+    - [ ]  JavaScript Object Notation
+    - [ ]  🛑 JSON is just an encoded String - it's encoded in utf-8 ← that can be important to remember!
+    - [ ]  Actually maps out to JavaScript objects (and Swift with a little work!)
+    - [ ]  Open [https://www.mockaroo.com](https://www.mockaroo.com/)
+    - [ ]  change type to JSON
+    - [ ]  show example of JSON output
+    - [ ]  Open JSONPlayground
+- [ ]  Check the time if it's before 10:45 - want to practice basic persistence or encoding/decoding JSON? We'll work with JSON more tomorrow and make our first network calls, but we're going to drop persistence to make things simpler to work with
