@@ -17,10 +17,17 @@ let mockJSONString =
 """
 [{
   "id": 1,
-  "make": "Ford",
-  "model": "Fusion",
-  "body": "Plexiglass",
-  "engine": "V-6",
+  "make": "Mazda",
+  "model": "Mazda5",
+  "body": "vestibulum",
+  "engine": "consectetuer",
+  "wheels": 4
+}, {
+  "id": 2,
+  "make": "Subaru",
+  "model": "Impreza",
+  "body": "vestibulum",
+  "engine": "sapien",
   "wheels": 4
 }]
 """.data(using: .utf8)!
