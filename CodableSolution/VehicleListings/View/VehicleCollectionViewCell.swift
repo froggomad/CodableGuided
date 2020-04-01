@@ -13,7 +13,7 @@ class VehicleCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var priceLabel: UILabel!
 
     // MARK: - Properties
-    var vehicle: Vehicle? {
+    var car: Car? {
         didSet {
             updateViews()
         }
@@ -22,7 +22,7 @@ class VehicleCollectionViewCell: UICollectionViewCell {
     func updateViews() {
         guard let makeModel = makeModelLabel,
             let price = priceLabel,
-            let vehicle = vehicle else { return }
+            let vehicle = car else { return }
 
         makeModel.text = "\(vehicle.make.rawValue) \(vehicle.model.rawValue)"
         price.text = "\(vehicle.price)"

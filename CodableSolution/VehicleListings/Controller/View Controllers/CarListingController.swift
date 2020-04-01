@@ -40,7 +40,7 @@ extension CarListingController: UICollectionViewDelegate, UICollectionViewDataSo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VehicleCell", for: indexPath) as? VehicleCollectionViewCell else { fatalError("You forgot the identifier, Kenny") }
-        //cell.car = carController.cars[indexPath.item]
+        cell.car = carController.cars[indexPath.item]
         return cell
     }
 }
